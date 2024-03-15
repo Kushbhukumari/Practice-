@@ -1,0 +1,64 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Employee {
+    private String name;
+    private String gender;
+    private double salary;
+
+    public Employee(String name, String gender, double salary) {
+        this.name = name;
+        this.gender = gender;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+
+public class InternationalWomensDayBonus {
+
+    public static void issueBonus(List<Employee> employees) {
+        for (Employee employee : employees) {
+            if (employee.getGender().equalsIgnoreCase("female")) {
+                double bonus = employee.getSalary() * 0.10; // 10% bonus
+                employee.setSalary(employee.getSalary() + bonus);
+                System.out.println("Bonus issued to " + employee.getName() + ": $" + bonus);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Employee> employees = new ArrayList<>();
+        employees.add(new Employee("Alice", "Female", 50000));
+        employees.add(new Employee("Bob", "Male", 60000));
+        employees.add(new Employee("Carol", "Female", 55000));
+        employees.add(new Employee("David", "Male", 52000));
+
+        System.out.println("Before issuing bonus:");
+        for (Employee employee : employees) {
+            System.out.println(employee.getName() + " - Salary: $" + employee.getSalary());
+        }
+
+        System.out.println("\nIssuing 10% bonus for female employees...");
+        issueBonus(employees);
+
+        System.out.println("\nAfter issuing bonus:");
+        for (Employee employee : employees) {
+            System.out.println(employee.getName() + " - Salary: $" + employee.getSalary());
+        }
+    }
+}
