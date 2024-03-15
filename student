@@ -1,0 +1,56 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Student {
+    private String name;
+    private int age;
+    private String rollNumber;
+    private Map<String, Integer> marks;
+
+    public Student(String name, int age, String rollNumber) {
+        this.name = name;
+        this.age = age;
+        this.rollNumber = rollNumber;
+        this.marks = new HashMap<>();
+    }
+
+    public void addMarks(String subject, int mark) {
+        marks.put(subject, mark);
+    }
+
+    public double getAverageMarks() {
+        if (marks.isEmpty())
+            return 0;
+
+        int totalMarks = 0;
+        for (int mark : marks.values()) {
+            totalMarks += mark;
+        }
+        return (double) totalMarks / marks.size();
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Marks: " + marks);
+        System.out.println("Average Marks: " + getAverageMarks());
+    }
+
+    public static void main(String[] args) {
+        Student student1 = new Student("Alice", 18, "S001");
+        student1.addMarks("Math", 85);
+        student1.addMarks("Science", 90);
+        student1.addMarks("History", 75);
+
+        Student student2 = new Student("Bob", 17, "S002");
+        student2.addMarks("Math", 78);
+        student2.addMarks("Science", 82);
+        student2.addMarks("History", 80);
+
+        System.out.println("Student 1 Info:");
+        student1.displayInfo();
+        System.out.println("\nStudent 2 Info:");
+        student2.displayInfo();
+    }
+}
